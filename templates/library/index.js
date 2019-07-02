@@ -5,7 +5,6 @@ const { exec } = require('child_process')
 const ora = require('ora')
 
 module.exports = function(creator, options, callback) {
-  console.log(options)
   const { name, description, author } = options;
 
   // 获取当前命令的执行目录，注意和项目目录区分

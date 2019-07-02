@@ -19,7 +19,7 @@
     "build": "rollup -c",
     "dev": "rollup -c -w"
   },
-  "author": "<%= author %>",
+  "author": "<%- author %>",
   "license": "MIT",
   "dependencies": {
     "@babel/polyfill": "^7.4.4",

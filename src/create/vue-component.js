@@ -5,9 +5,12 @@ const fs = require('fs-extra')
 const inquirer = require('inquirer')
 const memFs = require('mem-fs')
 const memFsEditor = require('mem-fs-editor')
+const Creator = require('./creator')
 
-class VueComponent {
+
+class VueComponent extends Creator {
   constructor (options) {
+    super();
     const store = memFs.create();
     this.fs = memFsEditor.create(store);
     this.conf = Object.assign({
@@ -26,25 +29,11 @@ class VueComponent {
   }
 
   create () {
-    VueComponent.ask().then(answer => {
+    this.ask().then(answer => {
       // 询问完成结束后，创建文件
       Object.assign(this.conf, answer)
       this.write()
     })
-  }
-
-  getTplPath(file) {
-    return path.join(this.tplDirPath, file);
-  }
-
-  copyTpl(file, to, data = {}) {
-    const tplPath = this.getTplPath(file);
-    this.fs.copyTpl(tplPath, to, data);
-  }
-
-  copy(file, to) {
-    const tplPath = this.getTplPath(file);
-    this.fs.copy(tplPath, to);
   }
 
   write () {
@@ -60,7 +49,7 @@ class VueComponent {
 
   }
 
-  static ask () {
+  ask () {
     const prompts = []
     prompts.push({
       type: 'input',
@@ -84,7 +73,8 @@ class VueComponent {
     prompts.push({
       type: 'input',
       name: 'author',
-      message: '请输入作者：'
+      message: '请输入作者：',
+      default: this.gitUser
     })
 
     return inquirer.prompt(prompts)
