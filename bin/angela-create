@@ -1,0 +1,36 @@
+#!/usr/bin/env node
+const chalk = require('chalk')
+const path = require('path')
+const program = require('commander')
+const inquirer = require('inquirer')
+const vueComponent = require('../src/create/vue-component')
+const library = require('../src/create/library')
+
+program
+.parse(process.argv)
+
+
+const args = program.args
+const type = args[0] || ''
+const prompts = []
+const typeChoices = [{
+  name: 'library 库',
+  value: 'library'
+}, {
+  name: 'vue 组件',
+  value: 'vue-component'
+}]
+
+prompts.push({
+  type: 'list',
+  name: 'type',
+  message: '请选择要创建的项目类型：',
+  choices: typeChoices
+})
+inquirer.prompt(prompts).then(answer => {
+  if (answer.type === 'library') {
+    new library().create()
+  } else if (answer.type === 'vue-component') {
+    new vueComponent({}).create()
+  }
+})

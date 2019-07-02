@@ -1,0 +1,11 @@
+#! /usr/bin/env node
+
+const program = require('commander')
+const { getPkgVersion, printPkgVersion } = require('../src/util')
+
+printPkgVersion()
+
+program
+  .version(getPkgVersion())
+  .command('create', 'Create library or vue component for project')
+  .parse(process.argv);
