@@ -48,7 +48,7 @@ module.exports = function(creator, options, callback) {
     console.log(`${chalk.green('✔ ')} ${chalk.grey(`创建文件: ${name}/src/index.js`)}`);
 
     // install
-    const command = 'npm install'
+    const command = `cd ${name} && npm install`
     const installSpinner = ora(`执行安装项目依赖 ${chalk.cyan.bold(command)}, 需要一会儿...`).start()
     const install = exec(command)
     exec(command, (error, stdout, stderr) => {

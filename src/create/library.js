@@ -41,8 +41,6 @@ class Library extends Creator{
     tplBuilder(this, this.conf, () => {
       console.log(`${chalk.green('✔ ')} ${chalk.grey(`创建library库 - ${this.conf.name} 成功！`)}`)
       console.log();
-      console.log(chalk.grey(`开始项目:  cd ${this.conf.name } && npm install`));
-      console.log();
     });
 
   }
