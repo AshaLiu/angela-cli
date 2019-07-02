@@ -1,7 +1,7 @@
 ## angela-cli
 
 ### 安装
-`npm i @souche-digital-marketing/angela-cli --save-dev`
+`npm i @souche-digital-marketing/angela-cli -g`
 
 ### 创建一个lib库工程
 `angela create`，选择library
